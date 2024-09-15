@@ -18,11 +18,41 @@ const TAGS = {
 }
 const PROJECTS = [
   {
-    title: "Video para NoEMEC Audiovisuales",
+    title: "Video para CORAL MUJAES",
     description:
-      "Video promocional para NoEMEC Audiovisuales. De visita por Valledupar, Colombia, la ciudad de la música vallenata.",
-    link: "https://joralmo.pro/cypressShow.mp4",
-  }
+      "Video en formato horizontal para el canal de Youtube 'Coral Mujaes'",
+    link: "https://www.youtube.com/watch?v=7Wu8pxClthE",
+    type: "YouTube"
+  },
+  {
+    title: "Video para canal sobre videojuegos",
+    description:
+      "Video dinámico en formato horizontal para el canal de Youtube 'DanicoLevelUP'",
+    link: "https://www.youtube.com/watch?v=vs18bM1WSJ8",
+    type: "YouTube"
+  },
+  {
+    title: "Problematicas de Colombia",
+    description:
+      "Video dinámico en formato horizontal para canal de política",
+    link: "https://www.youtube.com/watch?v=-g31p8W50yk",
+    type: "YouTube"
+  },
+  {
+    title: "Reel para Opositores",
+    description:
+      "Video dinámico en formato vertical para coach online",
+    link: "https://www.youtube.com/watch?v=YNMH3N9NKfA",
+    type: "YouTube"
+  },
+  {
+    title: "video para LA FOKA",
+    description:
+      "Video para la página de facebook 'La Foka'",
+    link: "https://www.youtube.com/watch?v=nbrTDa9T-PQ",
+    type: "YouTube"
+  },
+   
 ]
 ---
 
@@ -33,6 +63,7 @@ const PROJECTS = [
         title={project.title}
         description={project.description}
         link={project.link}
+        type={project.type}
       />
     ))
   }

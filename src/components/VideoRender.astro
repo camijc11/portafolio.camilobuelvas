@@ -1,11 +1,12 @@
----
-interface Props {
+--- 
+interface Type {
   title: string;
   description: string;
   link: string;
+  type: 'mp4' | 'YouTube' | 'Instagram';
 }
 
-const { title, description, link } = Astro.props;
+const { title, description, link, type } = Astro.props;
 ---
 <div class="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg space-y-6">
   <!-- Título -->
@@ -20,14 +21,47 @@ const { title, description, link } = Astro.props;
 
   <!-- Contenedor del Video Responsivo con Aspect Ratio -->
   <div class="w-full max-w-4xl">
-    <div class="aspect-w-16 aspect-h-9">
-      <video
-        controls
-        class="w-full h-full rounded-lg"
-      >
-        <source src={link} type="video/mp4" />
-        Tu navegador no soporta la etiqueta de video.
-      </video>
+    <div class="relative pb-[56.25%]">
+      {type === 'mp4' && (
+        <video
+          controls
+          class="absolute top-0 left-0 w-full h-full rounded-lg"
+        >
+          <source src={link} type="video/mp4" />
+          Tu navegador no soporta la etiqueta de video.
+        </video>
+      )}
+
+      {type === 'YouTube' && (
+        <iframe
+          class="absolute top-0 left-0 w-full h-full rounded-lg"
+          src={`https://www.youtube.com/embed/${link.split('v=')[1]}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      )}
+
+      {type === 'Instagram' && (
+        <blockquote
+          class="instagram-media absolute top-0 left-0 w-full h-full"
+          data-instgrm-permalink={link}
+          style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px rgba(0,0,0,0.15),0 0 0 1px rgba(0,0,0,0.1); margin: 1px; padding:0; width:100%; height:100%;"
+        >
+          <div style="padding:16px;line-height:0;">
+            <a
+              href={link}
+              style="display:block; position:relative; height:0; width:100%;"
+            >
+              <img
+                src="https://instagram.fclj1-1.fna.fbcdn.net/v/t51.2885-15/e35/73497885_2242243837936434_2701774962772381204_n.jpg?_nc_ht=instagram.fclj1-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=YHcQ4jvgLQ8AX-IJdNL&_nc_tp=18&oh=00_a8H1VsYb9i6JtQ1tCD11Uoi4hK7zJ4mA__OZwyoTKFCwLQ&oe=64F6A275"
+                alt="Instagram"
+                style="object-fit: cover; width: 100%; height: auto;"
+              />
+            </a>
+          </div>
+        </blockquote>
+      )}
     </div>
   </div>
 </div>
