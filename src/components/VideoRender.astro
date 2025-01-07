@@ -34,12 +34,20 @@ const { title, description, link, type } = Astro.props;
 
       {type === 'YouTube' && (
         <iframe
-          class="absolute top-0 left-0 w-full h-full rounded-lg"
-          src={`https://www.youtube.com/embed/${link.split('v=')[1]}`}
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+  class="absolute top-0 left-0 w-full h-full rounded-lg"
+  src={
+    link.includes("youtube.com/watch?v=")
+      ? `https://www.youtube.com/embed/${link.split('v=')[1].split('&')[0]}`
+      : link.includes("youtube.com/shorts/")
+      ? `https://www.youtube.com/embed/${link.split('shorts/')[1].split('?')[0]}`
+      : link
+  }
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+
       )}
 
       {type === 'Instagram' && (
